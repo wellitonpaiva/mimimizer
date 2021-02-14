@@ -1,0 +1,28 @@
+replicaCount: 2
+
+image:
+  repository: wellitonpaiva/mimimizer
+  pullPolicy: Always
+
+
+imagePullSecrets:
+  - name: default-token-z7zhs
+
+service:
+  type: LoadBalancer
+  port: 8080
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 1000Mi
+  requests:
+    cpu: 100m
+    memory: 200Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
